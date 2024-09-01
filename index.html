@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Música Player</title>
+    <link href="https://fonts.googleapis.com/css?family=ABeeZee|Karla" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --Circle-Size: 38px;
+            --Progress-Border-Size: 2px;
+            --Progress-Empty: #eee;
+            --Progress-Fill: #333;
+            --Player-Background: #fbfbfb;
+            --Play-Pause-Buttons-Size: 14px;
+            --Play-Pause-Buttons-Color: #111;
+            --Player-Text-Margin: 16px;
+            --Song-Name-Font-Size: 10px;
+            --Song-Name-Color: #888;
+            --Artist-Name-Font-Size: 11px;
+            --Artist-Name-Color: #888;
+        }
+        #glenplayer07 {
+            position: fixed;
+            bottom: 0;
+            margin-bottom: 30px;
+            left: 0;
+            margin-left: 30px;
+            z-index: 99;
+        }
+        .flamingo {
+            display: flex;
+            align-items: center;
+        }
+        .circleofdeath {
+            width: var(--Circle-Size);
+            height: var(--Circle-Size);
+            border-radius: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .tinfoil {
+            width: var(--Circle-Size);
+            height: var(--Circle-Size);
+            background: var(--Progress-Empty);
+            border-radius: 100%;
+        }
+        .oven {
+            background: var(--Progress-Fill);
+        }
+        .oliveoil {
+            width: 100%;
+            height: 100%;
+        }
+        .crust {
+            position: absolute;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--Circle-Size);
+            height: var(--Circle-Size);
+        }
+        .cherry {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(var(--Circle-Size) - (var(--Progress-Border-Size) * 2));
+            height: calc(var(--Circle-Size) - (var(--Progress-Border-Size) * 2));
+            background: var(--Player-Background);
+            border-radius: 100%;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .music-controls {
+            display: flex;
+            align-items: center;
+        }
+        .music-controls .material-icons {
+            font-size: var(--Play-Pause-Buttons-Size);
+            color: var(--Play-Pause-Buttons-Color);
+        }
+        .pausee {
+            display: none;
+        }
+        .beff {
+            display: none;
+        }
+        .aff {
+            display: block;
+        }
+        .music-info {
+            margin-left: var(--Player-Text-Margin);
+            line-height: 1em;
+        }
+        .song-name {
+            font-family: ABeeZee;
+            font-size: var(--Song-Name-Font-Size);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--Song-Name-Color);
+        }
+        .artist-name {
+            margin-top: 3px;
+            font-family: Karla;
+            font-size: var(--Artist-Name-Font-Size);
+            letter-spacing: 0.3px;
+            color: var(--Artist-Name-Color);
+        }
+    </style>
+</head>
+<body>
+    <div id="glenplayer07">
+        <div class="flamingo">
+            <div class="circleofdeath">
+                <div class="tinfoil">
+                    <div class="oliveoil"></div>
+                </div>
+                <div class="crust">
+                    <div class="cherry">
+                        <div class="music-controls">
+                            <i class="material-icons playy">play_arrow</i>
+                            <i class="material-icons pausee">pause</i>
+                        </div>
+                    </div><!--cherry-->
+                </div><!--crust-->
+            </div><!--circleofdeath-->
+            <div class="music-info">
+                <div class="song-name">more than words</div>
+                <div class="artist-name">羊文学</div>
+            </div><!--music-info-->
+        </div><!--flamingo-->
+    </div><!--glenplayer07-->
+    <audio id="audio" src="https://github.com/Yokaiss/musik/raw/main/morethanwords.mp3" type="audio"></audio>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="//glenthemes.github.io/-music-/glenplayer07.js"></script>
+</body>
+</html>
+
+<style type="text/css">figure {margin: 0;}</style>
+
+    <style>
+        #container {
+            position: relative;
+        }
+
+        #overlay {
+            width: 0px;
+            height: 0px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin: -18rem 0rem 0rem -54rem;
+            background-color: transparent;
+            background-image: url('');
+            background-repeat: no-repeat;
+            z-index: 900;
+            cursor: pointer;
+        }
+
+        #playButton {
+            position: absolute;
+            bottom: -286px; /* Ajustado hacia abajo */
+            left: 600px; /* Ajustado hacia la izquierda */
+            background-color: #EEEEEE;
+            color: #---;
+            border: 1px solid #000; /* Borde fino negro */
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            animation: floatUpDown 2s infinite ease-in-out;
+            z-index: 1001;
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="overlay"></div>
+        <button id="playButton" onclick="playSound()">▶</button>
+    </div>
+
+    <script>
+        var audio = new Audio('https://github.com/Yokaiss/musik/raw/main/suku1.mp3');
+
+        function playSound() {
+            // Ajusta el volumen (rango: 0.0 a 1.0)
+            audio.volume = 1.0; // Puedes ajustar este valor según tus preferencias
+
+            // Reproduce el sonido
+            audio.play();
+        }
+    </script>
+</body>
+</html>
+
+
+<style>figure{margin:0}.tmblr-iframe{position:absolute}.tmblr-iframe.hide{display:none}.tmblr-iframe--amp-cta-button{visibility:hidden;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:100}.tmblr-iframe--amp-cta-button.tmblr-iframe--loaded{visibility:visible;animation:iframe-app-cta-transition .2s ease-out}</style><link rel="stylesheet" media="screen" href="https://assets.tumblr.com/client/prod/standalone/blog-network-npf/index.build.css?_v=f085dde138e244526309d4673db67b4c"><link href="https://fonts.googleapis.com/css2?family=BenchNine:wght@300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Yuji+Boku&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+//
+$('a.poplight[href^=#]').click(function() {
+var popID = $(this).attr('rel');
+var popURL = $(this).attr('href'); 
+var query= popURL.split('?');
+var dim= query[1].split('&');
+var popWidth = dim[0].split('=')[1];
+$('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a href="#" class="close"></a>');
+var popMargTop = ($('#' + popID).height() + 80) / 2;
+var popMargLeft = ($('#' + popID).width() + 80) / 2;
+$('#' + popID).css({
+'margin-top' : -popMargTop,
+'margin-left' : -popMargLeft
+});
+$('body').append('<div id="fade"></div>');
+$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn(); 
+return false;
+});
+$('a.close, #fade').live('click', function() {
+$('#fade , .popup_block').fadeOut(function() {
+$('#fade, a.close').remove(); 
+});
+return false;
+});
+});
+</script>
+
+ 
+<title> * TITLE HERE !  </title>
+<link rel="shortcut icon" href="https://i.imgur.com/Pp1FPNB.png">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+<script src="https://static.tumblr.com/iuw14ew/VSQma1786/jquery.style-my-tooltips.js"></script>
+<script>
+(function($){
+$(document).ready(function(){
+$("a[title]").style_my_tooltips({
+tip_follows_cursor:true,
+tip_delay_time:0,
+tip_fade_speed:0,
+attribute:"title"
+});
+});
+})(jQuery);
+</script>
+ 
+<style type="text/css">
+
+.popup_block{
+    display:none;
+    background:#1a1a1a;
+    left:1007px;
+    top:455px;
+    width:250px;
+    height:800px;
+    padding:15px;
+    position:absolute;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    z-index: 999999;
+    -webkit-box-shadow: 0px 0px 0px transparent; 
+    -moz-box-shadow: 0px 0px 0px transparent; 
+    box-shadow: 0px 0px 0px transparent; 
+}
+ 
+ 
+*html #fade {position: absolute;}
+*html .popup_block {position: absolute;}
+#fade {
+    display:none;
+    position:absolute;
+    left:0px;
+    top:19px;
+    width:100%;
+    height:100%;
+    z-index:9999;
+    background-image: url('https://xatimg.com/image/YzXMUUC8PVbl.png');
+    background-position: left middle;
+    background-repeat: no-repeat;
+    background-attachment: absolute;
+    background-color:#1a1a1a; 
+    opacity:1;
+    
+}
+ 
+
+ 
+::-webkit-scrollbar-thumb:vertical { height:7px; 
+                                     background:#1a1a1a; 
+                                     border-top:5px solid #571220; 
+                                     border-bottom:5px solid #571220;
+                                     border-radius: 5px;
+                                
+    
+}
+                                     
+::-webkit-scrollbar-thumb:horizontal {background-color:#1a1a1a;
+    
+}
+
+::-webkit-scrollbar {width:3px; height:7px;
+    
+}
+
+     @-webkit-keyframes flotar {
+    0% {-webkit-transform: translateY(-8px);
+    transform: translateY(-8px);}
+    50% {-webkit-transform: translateY(8px);
+    transform: translateY(8px);}
+    100% {-webkit-transform: translateY(-8px);
+    transform: translateY(-8px);}}
+    
+    @keyframes flotar {
+    0% {-webkit-transform: translateY(-8px);
+    transform: translateY(-8px);}
+    50% {-webkit-transform: translateY(8px);
+    transform: translateY(8px);}
+    100% {-webkit-transform: translateY(-8px);
+    transform: translateY(-8px);}}
+    
+    @-webkit-keyframes flotar-flotar {
+    100% {-webkit-transform: translateY(-8px);
+    transform: translateY(-8px);}}
+    
+    @keyframes flotar-flotar {
+    100% {-webkit-transform: translateY(-8px);
+    transform: translateY(-8px);}}
+    
+    @keyframes burbuja { 0% { transform: translateY(0);} 100% { transform: translateY(-50px);}}
+    
+    
+
+ 
+#s-m-t-tooltip{
+max-width:250px;
+margin:23px;
+padding: 5px;
+background: #000;
+border-left: 5px solid #571220;
+color:#fff;
+z-index:99999999999999999999;
+font-family:'cabin';
+font-size:8px;
+line-height:10px;
+letter-spacing: 1px;
+text-transform: uppercase;
+text-align:center;
+font-weight:normal;
+box-shadow:1px 1px 3px rgba(0,0,0,.1);}
+ 
+
+body, a, a:hover { cursor: url(https://i.imgur.com/6w1ZkAZ.gif), progress}
+ 
+
+iframe.tmblr-iframe {
+    z-index:99999999999999!important;
+    top:0!important;
+    right:0!important;
+    opacity:0;
+    background-color: #1a1a1a;
+    transform:scale(0.45);
+    transform-origin:100% 0;
+    -webkit-transform:scale(0.45);
+    -webkit-transform-origin:100% 0;
+    -o-transform:scale(0.45);
+    -o-transform-origin:100% 0;
+    -moz-transform:scale(0.45);
+    -moz-transform-origin:100% 0;
+    -ms-transform:scale(0.45);
+    -ms-transform-origin:100% 0;}
+ 
+iframe.tmblr-iframe:hover {
+    opacity:1!important;}
+
+ 
+ body {
+    background-color:#1a1a1a;
+    background-image: url('https://xatimg.com/image/YzXMUUC8PVbl.png');
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-attachment: absolute;
+    margin:0px;
+    color:#bcb3b3;
+    position: relative;
+    font-family: 'archivo narrow';
+    text-align:justify;
+    letter-spacing:0px;
+    min-height: 1360px;
+    font-size: 11px;
+    overflow-x: hidden;
+    overflow: none;
+    line-height:140%;}
+    
+   
+ 
+a:link, a:active, a:visited {
+    text-decoration: none;
+    color: #fff;
+    -moz-transition-duration:.6s;
+    -webkit-transition-duration:.6s;
+    -o-transition-duration:.6s;
+    -webkit-filter: blur(0px);}
+ 
+a:hover {
+    color: #ec083b;
+    -moz-transition-duration:.6s;
+    -webkit-transition-duration:.6s;
+    -o-transition-duration:.6s;
+}
+    
+
+
+a.mapa, a.mapa:link, a.mapa:active, a.mapa:visited
+{font-family:consolas;
+font-size:8px;
+padding-text:8px;
+line-height:8px;
+padding:4px;
+letter-spacing:1px;
+font-weight: bold;
+color: #fff;
+text-decoration:none;
+text-transform:uppercase;
+background-color: #212121;
+text-align:center;
+margin: 5px;
+display:block;
+margin-bottom:1px;
+-webkit-transition: all .6s ease-in-out;
+-moz-transition: all .6s ease-in-out;
+-o-transition: all .6s ease-in-out;
+transition: all 0.6s ease-out;}
+ 
+ 
+ 
+ 
+a.mapa:hover
+{font-family:consolas;
+font-size:8px;
+padding-text:8px;
+line-height:8px;
+letter-spacing:2px;
+font-weight:normal;
+color: #e5163e!important;
+text-decoration:none;
+text-transform:uppercase;
+background-color:transparent;
+text-align:center;
+display:block;
+margin-bottom:1px;
+-webkit-transition: all .6s ease-in-out;
+-moz-transition: all .6s ease-in-out;
+-o-transition: all .6s ease-in-out;
+transition: all 0.6s ease-out;}
+
+
+
+h1 {font-family: 'yuji boku'; 
+    text-transform:normal; 
+    color:#fff; 
+    margin:0px; 
+    letter-spacing: 2px; 
+    padding: 4px 6px 2px 6px; 
+    line-height:48px; 
+    text-align:center;}
+
+ 
+h2 {
+    color: #fff;
+    font-family: 'La Belle Aurore';
+    font-size: 23px;
+    line-height: 23px;
+    text-align: right;
+    font-weight: normal;
+    letter-spacing: -2px;
+	padding:3px;
+	margin:0px;
+    text-transform: lowercase;
+}
+
+
+h2 b {
+    color: #550e1c;
+    font-family: 'La Belle Aurore';
+    font-size: 25px;
+    line-height: 25px;
+    text-align: right;
+    font-weight: normal;
+	padding:3px;
+	margin:0px;
+    text-transform: lowercase;
+    letter-spacing: 0px;
+}
+ 
+ 
+h3 {
+    color: #fff;
+    font-family: 'archivo narrow';
+    font-size: 6px;
+    line-height: 12px;
+    text-align: center;
+    font-weight: normal;
+    background-color: #550e1c;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+	padding:5px;
+	margin:0px;
+}
+
+ 
+ 
+h4{font-family: consolas; 
+   font-size: 8px; 
+   font-weight: normal; 
+   text-align:;  
+   color: #fff; 
+   text-transform: uppercase; 
+   margin: 1px; 
+   letter-spacing: 3px; 
+   padding: 2px; 
+   line-height: 8px; 
+   text-align:center; }
+
+
+h5 {
+    font-family: 'DM Serif Display';
+    font-size: 35px;
+    line-height: 30px;
+    font-weight: normal;
+    text-align: center;
+    color: #d30933;
+    background-color: #121212;
+    text-transform: normal;
+    letter-spacing: 0px;
+	padding:3px;
+	margin:0px;
+}
+
+
+
+h6 {
+    color: #fff;
+    font-family: 'archivo narrow';
+    font-size: 6px;
+    line-height: 12px;
+    text-align: center;
+    font-weight: normal;
+    background-color: #c70d46;
+    background-image: url('https://i.imgur.com/WwNqprZ.png');
+    border: double #000;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+	padding:5px;
+	margin:0px;
+}
+
+   
+    
+pre { 
+      font: 11px 'archivo narrow'; 
+      text-align:center; 
+      font-weight: normal;
+      text-transform:normal; 
+      background-color: #1a1a1a;
+      color: #fff;
+      padding: 5px;
+      line-height:14px; 
+      letter-spacing: 1px; 
+      white-space: -moz-pre-wrap;
+      white-space: -pre-wrap; 
+      white-space: -o-pre-wrap; 
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin-top: 10px; 
+      border-top: double #1a1a1a;
+      overflow-y:scroll; 
+      overflow-x:hidden;
+    
+}
+
+
+    
+blockquote {
+margin:0px;
+margin-left:10px;
+padding-left:15px;
+border-left:3px solid #869c97;
+background-color: #212121;
+padding: 10px;
+}
+
+blockquote blockquote {
+    border-left:1px solid #bc213f;
+}
+
+blockquote blockquote blockquote {
+    border-left:1px solid #9aa3c1;
+}
+
+blockquote img {
+    max-width:100%;
+    height:100%;
+    padding:5px; 
+    margin:0 10px 5px 0px; 
+   -webkit-filter: grayscale(100%);
+   -webkit-transition: all 0.9s ease-in-out;
+   -moz-transition: all 0.9s ease-in-out;
+   -o-transition: all 0.9s ease-in-out;
+   -ms-transition: all 0.9s ease-in-out;
+   transition: all 0.9s ease-in-out;}
+}
+    
+blockquote img {
+    max-width:100%;
+}
+ 
+blockquote blockquote img{
+    max-width:100%;
+    height:auto;
+} 
+   
+I {font-family: 'La Belle Aurore'; 
+   text-transform:none; 
+   color: #fff; 
+   line-height:14px; 
+   letter-spacing:0px; 
+   text-transform:lowercase; 
+   font-size: 13px;
+   font-weight: normal;}
+
+B {color: #c70d46; 
+   text-decoration: none; 
+   letter-spacing:1px; 
+   font-family:'yuji boku'; 
+   padding:2px 4px 2px 4px; 
+   font-size: 9px; 
+   text-transform:uppercase;
+   font-weight: bold; 
+   line-height:11px;}
+
+u {
+font-family:'consolas';
+font-size:6px;
+line-height: 8px;
+background-color: #434343;
+text-transform:uppercase;
+text-decoration:none;
+font-weight:normal;
+color:#fff;
+padding:5px;
+letter-spacing:1px;
+}
+ 
+tt {    
+font-size:8px;
+font-family:'archivo narrow';    
+color:#cb0b34;    
+font-weight:normal;
+letter-spacing: 1px;    
+text-transform:uppercase;}  
+
+ 
+small,sup,sub {
+    font-size:11px}
+
+
+.tijeras {
+width: 250px;
+padding-right:5px;
+color:#e3d8e2;
+text-shadow: 1px 1px 0px #d3d0c8;
+font-family:'Pirata one';
+background-image: url('https://i.imgur.com/WwNqprZ.png');
+background-color: #3d3d3d;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-size:45px;
+line-height:35px;
+text-align:center;
+font-weight:lighter;
+text-transform:lowercase;
+
+    
+}   
+
+    
+.dropcap {
+float: left;  
+line-height:26px;
+padding:5px 10px 8px 14px;  
+margin:0 10px 5px 0px;  
+color:#c4b8c4;
+text-shadow:1px 1px 1px #1a1a1a;
+background-color:#3e3838;
+background-image:url("https://i.imgur.com/WwNqprZ.png");
+border: double #1a1a1a;
+background-repeat: repeat;
+background-attachment: fixed;
+font-weight:lighter;
+font-size:26px;
+font-family:'yuji boku';
+position:relative;} 
+
+
+.letrasburbuja { animation: fadein 2s ease 0s 1 normal forwards; 
+                 position:absolute; 
+                 margin-left:70px; 
+                 margin-top:200px; 
+                 z-index:999999999999999; 
+                 animation: burbuja 3s linear 0s infinite alternate-reverse none;} 
+
+
+.letrasburbuja-cajita { opacity:1; 
+                        position: relative; 
+                        text-align:center; 
+                        background: #1a1a1a; 
+                        border-radius: .4em; 
+                        font-size:10px; 
+                        padding:10px 8px; 
+                        height:90px; 
+                        width:140px; 
+                        -webkit-box-shadow: -2px 2px 2px 0px rgba(0,0,0,0.25); 
+                        -moz-box-shadow: -2px 2px 2px 0px rgba(0,0,0,0.25); 
+                        box-shadow: -2px 2px 2px 0px rgba(0,0,0,0.25);} 
+
+.letrasburbuja-cajita:after { content: ''; 
+                              position: absolute; 
+                              right: 0; 
+                              top: 50%; 
+                              width: 0; 
+                              height: 0; 
+                              border: 20px solid transparent; 
+                              border-left-color: ; 
+                              border-right: 0; 
+                              border-top: 0; 
+                              margin-top: -10px; 
+                              margin-right: 0px;}
+
+
+
+.info1sukuna {
+top:465px;
+left:0px;
+width:190px;
+height:115px;
+z-index:99;
+padding:10px;
+overflow:auto;
+text-align:justify;
+position:absolute;
+background:#1a1a1a;
+-webkit-transition: all 0.5s ease 0s;
+-moz-transition: all 0.5s ease 0s;
+transition: all 0.5s ease 0s;
+filter:alpha(opacity=0);
+-html-opacity:0;
+-moz-opacity:0;
+opacity:1;}
+ 
+ 
+ 
+.info2sukuna {
+top:465px;
+right:0px;
+width:139px;
+height:55px;
+z-index:99;
+padding:10px;
+overflow:auto;
+text-align:justify;
+position:absolute;
+background:#1a1a1a;
+-webkit-transition: all 0.5s ease 0s;
+-moz-transition: all 0.5s ease 0s;
+transition: all 0.5s ease 0s;
+filter:alpha(opacity=0);
+-html-opacity:0;
+-moz-opacity:0;
+opacity:0;}
+ 
+.info2sukuna:hover {
+width:195px;
+height:118px;
+z-index:100;
+filter:alpha(opacity=1);
+-html-opacity:1;
+-moz-opacity:1;
+opacity:1;}
+ 
+.info3sukuna {
+bottom:95px;
+left:0px;
+width:139px;
+height:55px;
+z-index:99;
+padding:10px;
+overflow:auto;
+text-align:justify;
+position:absolute;
+background:#1a1a1a;
+-webkit-transition: all 0.5s ease 0s;
+-moz-transition: all 0.5s ease 0s;
+transition: all 0.5s ease 0s;
+filter:alpha(opacity=0);
+-html-opacity:0;
+-moz-opacity:0;
+opacity:0;}
+ 
+.info3sukuna:hover {
+width:195px;
+height:118px;
+z-index:100;
+filter:alpha(opacity=1);
+-html-opacity:1;
+-moz-opacity:1;
+opacity:1;}
+ 
+.info4sukuna {
+bottom:95px;
+right:0px;
+width:190px;
+height:115px;
+z-index:99;
+padding:10px;
+overflow:auto;
+text-align:justify;
+position:absolute;
+background:#1a1a1a;
+-webkit-transition: all 0.5s ease 0s;
+-moz-transition: all 0.5s ease 0s;
+transition: all 0.5s ease 0s;
+filter:alpha(opacity=0);
+-html-opacity:0;
+-moz-opacity:0;
+opacity:1;}
+ 
+
+
+
+:root {
+    --Heading-Font-Family:"La Belle Aurore";
+    --Quote-Font-Family:var(--Heading-Font-Family);
+    
+}
+
+
+.quote-words, .npf_quote {
+    padding:0;
+    color: #fff;
+    font-family:var(--Quote-Font-Family)!important;
+    font-weight:normal;
+    font-size: 25px;
+    text-transform:normal;
+    letter-spacing:.3px;
+    color:;
+    text-align:center;
+    line-height:25px;
+}
+ 
+.quote-words + .quote-source,
+.npf_quote {
+    margin-top: 0;
+    text-align:center;
+}
+
+
+
+
+primeraletra {
+float: left;
+font-size: 35px;
+color: #c4b8c4;
+line-height: 40px;
+text-align: center;
+font-weight:lighter;
+text-transform: uppercase;
+font-family: 'DM Serif Display';
+background-image:url("https://i.imgur.com/WwNqprZ.png");
+border: double #1a1a1a;
+background-repeat: repeat;
+background-attachment: fixed;
+width: 35px;  
+height: 30px;
+padding: 0px 5px 5px 4px;
+margin:3px 9px 5px 7px;
+display: inline-block;
+}
+
+
+
+#cajita {
+    background-color:#1a1a1a;
+    width:415px;
+    height:100%;
+    top:20px;
+    padding: 15px;
+    margin-left: 755px;
+    position:absolute; 
+    overflow-y:scroll; 
+    overflow-x:hidden; 
+    opacity:1;
+    -webkit-transition: all 0.9s ease-in-out;
+    -moz-transition: all 0.9s ease-in-out;
+    -o-transition: all 0.9s ease-in-out;
+    -ms-transition: all 0.9s ease-in-out;
+    transition: all 0.9s ease-in-out;
+}
+ 
+ 
+#cadauno {
+    margin-left:30px;
+    width:400px;
+    margin-top: -19px;|
+}     
+ 
+ 
+   
+#a {
+position:absolute;
+display:inline-block;
+padding: 10px;
+font-size: 100px; 
+font-family: 'Bebas Neue', bold;
+line-height:100px;
+letter-spacing:1px;
+background-color:transparent;
+background-image:url("https://i.imgur.com/Pp1FPNB.png");
+font-weight:normal;
+text-transform:lowercase;
+text-align:center;
+float:left;
+width: 55px;
+height: 55px;
+margin-top:117px;
+margin-left:1200px;
+z-index: 99999999;
+opacity:1;
+       -webkit-animation-name: flotar-float, flotar;
+        animation-name: flotar-float, flotar;
+        -webkit-animation-duration: .1s, 4s;
+        animation-duration: .1s, 4s;
+        -webkit-animation-delay: 0s, .5s;
+        animation-delay: 0s, .5s;
+        -webkit-animation-timing-function: ease-out, ease-in-out;
+        animation-timing-function: ease-out, ease-in-out;
+        -webkit-animation-iteration-count: 1, infinite;
+        animation-iteration-count: 1, infinite;
+
+}
+
+#a:hover {
+color:transparent;
+letter-spacing:2px;
+
+}
+   
+#b {
+position:absolute;
+display:inline-block;
+padding: 10px;
+font-size: 100px; 
+font-family: 'Bebas Neue', bold;
+line-height:100px;
+letter-spacing:1px;
+background-color:transparent;
+background-image:url("https://i.imgur.com/Pp1FPNB.png");
+font-weight:normal;
+text-transform:lowercase;
+text-align:center;
+float:left;
+width: 55px;
+height: 55px;
+margin-top:345px;
+margin-left:40px;
+z-index: 99999999;
+opacity:1;
+       -webkit-animation-name: flotar-float, flotar;
+        animation-name: flotar-float, flotar;
+        -webkit-animation-duration: .5s, 6s;
+        animation-duration: .5s, 6s;
+        -webkit-animation-delay: 0s, .5s;
+        animation-delay: 0s, .5s;
+        -webkit-animation-timing-function: ease-out, ease-in-out;
+        animation-timing-function: ease-out, ease-in-out;
+        -webkit-animation-iteration-count: 1, infinite;
+        animation-iteration-count: 1, infinite;
+}
+
+
+
+#b:hover {
+color:transparent;
+letter-spacing:2px;
+
+}
+     
+   
+#c {
+position:absolute;
+display:inline-block;
+padding: 10px;
+font-size: 100px; 
+font-family: 'Bebas Neue', bold;
+line-height:100px;
+letter-spacing:1px;
+background-color:transparent;
+background-image:url("https://i.imgur.com/Pp1FPNB.png");
+font-weight:normal;
+text-transform:lowercase;
+text-align:center;
+float:left;
+width: 55px;
+height: 55px;
+margin-top:650px;
+margin-left:650px;
+z-index: 99999999;
+opacity:1;
+       -webkit-animation-name: flotar-float, flotar;
+        animation-name: flotar-float, flotar;
+        -webkit-animation-duration: .0s, 6s;
+        animation-duration: .0s, 6s;
+        -webkit-animation-delay: 0s, .5s;
+        animation-delay: 0s, .5s;
+        -webkit-animation-timing-function: ease-out, ease-in-out;
+        animation-timing-function: ease-out, ease-in-out;
+        -webkit-animation-iteration-count: 1, infinite;
+        animation-iteration-count: 1, infinite;
+
+}
+
+#c:hover {
+color:transparent;
+letter-spacing:2px;
+
+}
+   
+#d {
+position:absolute;
+display:inline-block;
+padding: 10px;
+font-size: 100px; 
+font-family: 'Bebas Neue', bold;
+line-height:100px;
+letter-spacing:1px;
+background-color:transparent;
+background-image:url("https://i.imgur.com/Pp1FPNB.png");
+font-weight:normal;
+text-transform:lowercase;
+text-align:center;
+float:left;
+width: 55px;
+height: 55px;
+margin-top:570px;
+margin-left:265px;
+z-index: 99999999;
+opacity:1;
+       -webkit-animation-name: flotar-float, flotar;
+        animation-name: flotar-float, flotar;
+        -webkit-animation-duration: .3s, 3s;
+        animation-duration: .3s, 3s;
+        -webkit-animation-delay: 0s, .5s;
+        animation-delay: 0s, .5s;
+        -webkit-animation-timing-function: ease-out, ease-in-out;
+        animation-timing-function: ease-out, ease-in-out;
+        -webkit-animation-iteration-count: 1, infinite;
+        animation-iteration-count: 1, infinite;
+}
+
+#d:hover {
+color:transparent;
+letter-spacing:2px;
+
+
+}
+
+#e {
+position:absolute;
+display:inline-block;
+padding: 10px;
+font-size: 100px; 
+font-family: 'Bebas Neue', bold;
+line-height:100px;
+letter-spacing:1px;
+background-color:transparent;
+background-image:url("https://i.imgur.com/Pp1FPNB.png");
+font-weight:normal;
+text-transform:lowercase;
+text-align:center;
+float:left;
+width: 55px;
+height: 55px;
+margin-top:710px;
+margin-left:1220px;
+z-index: 99999999;
+opacity:1;
+       -webkit-animation-name: flotar-float, flotar;
+        animation-name: flotar-float, flotar;
+        -webkit-animation-duration: .5s, 6s;
+        animation-duration: .5s, 6s;
+        -webkit-animation-delay: 0s, .5s;
+        animation-delay: 0s, .5s;
+        -webkit-animation-timing-function: ease-out, ease-in-out;
+        animation-timing-function: ease-out, ease-in-out;
+        -webkit-animation-iteration-count: 1, infinite;
+        animation-iteration-count: 1, infinite;
+
+}
+
+#e:hover {
+color:transparent;
+letter-spacing:2px;
+}
+    
+#f {
+position:absolute;
+display:inline-block;
+padding: 10px;
+font-size: 100px; 
+font-family: 'Bebas Neue', bold;
+color:#1a1a1a;
+line-height:100px;
+letter-spacing:1px;
+background-color:transparent;
+background-image:url("https://i.imgur.com/Pp1FPNB.png");
+font-weight:normal;
+text-transform:lowercase;
+text-align:center;
+float:left;
+width: 55px;
+height: 55px;
+margin-top:200px;
+margin-left:1420px;
+z-index: 99999999;
+opacity:1;
+       -webkit-animation-name: flotar-float, flotar;
+        animation-name: flotar-float, flotar;
+        -webkit-animation-duration: .5s, 6s;
+        animation-duration: .5s, 6s;
+        -webkit-animation-delay: 0s, .5s;
+        animation-delay: 0s, .5s;
+        -webkit-animation-timing-function: ease-out, ease-in-out;
+        animation-timing-function: ease-out, ease-in-out;
+        -webkit-animation-iteration-count: 1, infinite;
+        animation-iteration-count: 1, infinite;
+
+}
+
+#f:hover {
+color:transparent;
+letter-spacing:2px;
+
+}
+
+   
+#links a {
+ 
+    color:transparent;
+    
+}
+
+
+
+ 
+#tabla1 {
+    position:absolute; 
+    overflow-y:scroll; 
+    overflow-x:hidden; 
+    width:350px; height:105px;
+    top:723px; left:383px;
+    padding:10px;
+    background:#1a1a1a;
+    text-align:justify;
+    opacity: 1;
+    z-index: 99999;
+    
+}
+   
+
+ 
+#tabla2 {
+    position:absolute; 
+    overflow-y:scroll; 
+    overflow-x:hidden; 
+    width:350px; height:105px;
+    top:723px; left:3px;
+    padding:10px;
+    background:#1a1a1a;
+    text-align:justify;
+    opacity: 1;
+    z-index: 99999;
+    
+}
+    
+ 
+ 
+ 
+ 
+ 
+ #tabla3 {
+    position:absolute; 
+    overflow-y:scroll; 
+    overflow-x:hidden; 
+    width:360px; height:105px;
+    top:41px; left:1335px;
+    padding:5px;
+    text-align:justify;
+    opacity: 1;
+    z-index: 99999;
+}
+   
+   
+   
+#tabla4 {
+    position:absolute; 
+    overflow-y:scroll; 
+    overflow-x:hidden; 
+    width:130px; height:205px;
+    top:63px; left:1290px;
+    padding:10px;
+    background:#1a1a1a;
+    text-align:justify;
+    opacity: 1;
+    z-index: 99999;
+    
+}
+   
+   
+   
+
+
+.paginas {
+    width:82px;
+    padding: 5px;
+    margin: 15px;
+    text-align:left;
+    font-size:10px;
+    margin-top: -7px;
+    text-transform: lowercase;
+    font-family:'yuji boku';
+    font-weight: normal;
+    text-transform:none;
+    background-color:transparent;
+    }
+    
+    
+.paginas a {
+    color: #fff;
+    }
+ 
+               
+#publicaciones {
+    width:400px;
+    padding: 10px;
+    margin-left:-40px;
+    padding-bottom:0px;
+    margin-top: -10px;
+    background-color: #161616;
+    border: double #161616;
+    border-radius: 10px;
+
+
+}
+
+#publicaciones img {
+    height:auto;
+    max-width:100%;
+}
+ 
+#photo img {
+    width:100%;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+}
+
+#cadauno img {
+    height:auto;
+    max-width:100%;
+}
+
+
+img {
+   -webkit-filter:grayscale(0%);
+   -webkit-transition: all 0.9s ease-in-out;
+   -moz-transition: all 0.9s ease-in-out;
+   -o-transition: all 0.9s ease-in-out;
+   -ms-transition: all 0.9s ease-in-out;
+   transition: all 0.9s ease-in-out;}
+
+.html_photoset {
+   -webkit-filter: grayscale(100%);
+   -webkit-transition: all 0.9s ease-in-out;
+   -moz-transition: all 0.9s ease-in-out;
+   -o-transition: all 0.9s ease-in-out;
+   -ms-transition: all 0.9s ease-in-out;
+   transition: all 0.9s ease-in-out;}
+
+img:hover {
+  -webkit-filter:none;}
+ 
+.html_photoset:hover {  
+   -webkit-filter: none;}
+
+ 
+#vignette,#tumblr_lightbox_caption {visibility:hidden;}
+#tumblr_lightbox {background:#202020!important;}
+#tumblr_lightbox_left_image,
+#tumblr_lightbox_right_image {opacity:0.5!important;}
+#tumblr_lightbox_center_image,
+#tumblr_lightbox_left_image,
+#tumblr_lightbox_right_image {
+    box-shadow:none!important;
+    border-radius:0px!important;
+}
+ 
+ 
+.caption {
+    width:px;
+    text-align:justify;
+    line-height:120%;
+}
+
+
+#musica{
+        z-index:1;
+        background: transparent;
+        background-image:url("https://i.imgur.com/cF7WLpJ.png");
+        border: 3px double #1a1a1a;
+        height: 150px; }
+
+
+#portada{
+    width:65px;  
+    height:65px;  
+    margin-left: -10px;
+}
+
+#portada img{  
+    width:70px;
+    margin-top: 12px;
+    background:transparent;
+    padding:5px;
+    border: 3px double #1a1a1a;
+    border-radius: 50px;
+}
+ 
+#portada img:hover{  
+    width:70px;
+    margin-top: 12px;
+    background:transparent;
+    padding:5px;
+}
+ 
+ 
+#reproductor{
+    padding:5px;  
+    position:absolute;    
+    margin-top:40px;
+    margin-left:12px;
+    background-color: #1a1a1a;
+    background-image:url("https://i.imgur.com/cF7WLpJ.png");
+    z-index:999;
+}
+ 
+#reproductor2{
+    width:26px;  
+    height:20px;  
+    overflow: hidden;
+    opacity: 0.2;
+    }
+   
+#titulodeportada{
+    width: 300px;
+    font-size:12px; 
+    line-height: 12px;
+    color: #fff;
+    text-shadow: 1px 1px 0px #1a1a1a;
+    font-family: 'DM Serif Display';
+    letter-spacing: -4px;
+    font-weight: bold;
+    text-transform: lowercase;
+    letter-spacing:1px;  
+    position:absolute;  
+    margin-top:-46px;  
+    margin-left:85px;
+    text-align:left;
+    }
+ 
+#informacion{
+    margin-top:-49px;  
+    margin-left:75px;
+    padding:5px 10px;  
+    font-size: 11px;
+    font-family: 'Archivo Narrow';
+    line-height:16px;
+    text-align:left;
+    text-transform: normal;
+    color: #1a1a1a;
+}
+
+
+
+
+#mensaje {
+
+    width: 390px; 
+    height: 160px;
+    color:#c8c7c8;
+    letter-spacing: 1px;
+    font-style:lighter;
+    text-transform:normal;
+    text-align: center; 
+    background: url("https://i.imgur.com/Aprokm3.png");
+    border: 3px double #1a1a1a;
+    background-repeat:repeat;
+
+
+
+}
+   
+ 
+#hashtags {
+    width:auto;
+    opacity: .9;
+    font-family: 'pirata one';
+    background-color: #0f1d36;
+    background-image:url("https://i.imgur.com/WwNqprZ.png");
+    border: double #1a1a1a;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    height: 6px;
+    letter-spacing: 1px;
+    margin-left:1px;
+    margin-top:7px;
+    padding:6px;
+    padding-top: 9px;
+    line-height: 5px;
+    word-spacing:-10px;
+    text-align:center;
+    }
+ 
+    #hashtags a {
+    color:#fff;
+    font-weight:normal;
+    font-size: 13px;
+    text-transform: none;
+    padding:5px;
+    -ms-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg); 
+    transform: rotate(10deg);}
+    }
+   
+    #hashtags a:hover {
+    color:#fff;
+    -moz-transition-duration:1s;
+    -webkit-transition-duration:1s;
+    -o-transition-duration:1s;
+    }
+    
+   
+.etiquetas {
+    
+    padding-top:0px;
+    text-align:center;
+    padding-left:12px;
+    padding-right:15px;
+    border-top: double #1a1a1a;
+    background-color: #571220;
+
+
+}
+
+.etiquetas a {
+     color: #fff;
+     font-size: 6px;
+     padding: 5px;
+     font-family: 'archivo narrow';
+     font-weight: normal;
+     text-transform: lowercase;
+     letter-spacing: 0px;
+     letter-spacing:1px;
+    
+}
+     
+
+.etiquetas a:hover {
+    color: #fff; 
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    
+ }
+ 
+
+.note {
+    text-transform:uppercase;
+    font-style:normal;
+    letter-spacing:0px;
+    font-size: 10px;
+    text-align:left;
+    line-height:90%;
+    margin-left:-40px;}
+   
+.note li {
+    list-style-type:none;
+    border-bottom:1px solid #1a1a1a1a1a1a;
+    padding:5px 25px 10px 25px;
+    text-align:left;
+    margin:0px;
+    -moz-transition-duration:0.5s;
+    -webkit-transition-duration:0.5s;
+    -o-transition-duration:0.5s;}
+   
+.note img.avatar {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;}
+    
+
+#credit {
+bottom:10px;
+right:15px;
+width:25px;
+height:25px;
+text-align:center;
+overflow:hidden;
+position:fixed;
+z-index: 99999;
+}
+
+   
+</style>
+
+
+<script src="https://assets.tumblr.com/assets/scripts/tumblelog.js?_v=93bb152582dbb408afc826f52e6676b4"></script>
+
+
+
+
+
+
+ 
+<!-- SIDEBAR BEGINS HERE --><div id="tabla3"></div><div id="tabla1"><span class="dropcap">I</span> <b>can't</b> understand everything that exists.
+<u>boring and repeated everyday crumbles away gradually</u>.
+why does everyone <b>doubt me</b>?
+just stay normal, I know anyway.
+<i>don't fool yourself anymore, psycho . . .</i>
+don't fool yourself anymore, <tt>psycho</tt> . . . 
+hey, who's the <i>weirdo</i> in someone else's eyes?
+hey, who's the <i>demon</i> in someone else's heart?
+hey, who's the <i>puppet</i> in someone else's hand?
+hey, who else is? Don't fool yourself anymore, <tt>psycho</tt> . . .
+
+
+
+
+</div><div id="tabla2"><span class="dropcap">I</span><b>n this world</b>, desires become sins.
+innocence becomes assimilated and gets mocked.
+don't think it's surprising, <i>both you and I exist as freaks</i>.
+<u>don't fool yourself into thinking you're an exception</u>.
+don't fool yourself anymore, <tt>psycho</tt>.
+don't fool yourself anymore, <tt>psycho</tt>.
+who am I? Just tell me right now.
+how can I classify?
+<i>devour evil, pretending to bе a villain</i>.
+who's harboring schemes in their hеart?
+look in the mirror, laughing or crying.
+listening to what sounds like a joke, it makes me cry . . .
+
+
+
+
+</div><div id="tabla4"><span class="dropcap">T</span>hose <b>candle flames</b> were like the <i>lives of men</i>. So fragile. <b>So deadly.</b> Left alone, they lit and warmed. <tt>Let run rampant, they would destroy the very things they were meant to illuminate.</tt> Embryonic bonfires, each bearing a seed of destruction so potent it could <i>tumble cities</i> and <b>dash kings to their knees</b>.
+
+
+
+
+</div><!-- SIDEBAR ENDS HERE -->
+
+
+
+
+
+
+
+<!-- DON'T TOUCH PLEASE -->
+
+
+<div id="cadauno">
+ 
+</div>
+
+<div id="credit">
+
+<a href="https://xat.me/Hina" title="theme by Hina"><img src=""></a></a></div>
+
+
+<div class="letrasburbuja"><div class="letrasburbuja-cajita"><span class="tijeras" style="font-style: italic; font-size: 33px; line-height: 33px"> it will be a massacre !</span>
+<br>
+<tt>Xat.me/Hypnos</tt></div></div>
+
+<div id="f"><div id="links"><a href="#?w=400" rel="box6" class="poplight" title="navigation.">06.</a></div></div>
+
+<div id="cajita">
+ 
+<div id="cadauno">
+
+
+
+<div id="publicaciones">
+
+<center><h1 style="font-family:'pirata one'; letter-spacing: 1px; font-style: normal; color: #d8d8d8; font-size:35px; font-weight: normal; line-height: 25px"></h1></center><div class="npf_row"><div class="npf_col"><figure class="tmblr-full"><a class="post_media_photo_anchor" data-big-photo="https://64.media.tumblr.com/1ec15b636ad452d50d335c032e9247f3/068160216ba64e41-fb/s1280x1920/d87630beaee1c19582a85db884765a71b8f06f1d.gifv" data-big-photo-height="350" data-big-photo-width="540"><img class="post_media_photo image" src="https://xatimg.com/image/WhPwROyZ3qKx.gif" srcset="https://xatimg.com/image/WhPwROyZ3qKx.gif" sizes="(max-width: 540px) 100vw, 540px" alt="image"></a></figure></div></div><div class="npf_row"><div class="npf_col"><figure class="tmblr-full"><a class="post_media_photo_anchor" data-big-photo="https://64.media.tumblr.com/5b9c07e33b8d5b62f4ee3374670c4e6c/068160216ba64e41-61/s1280x1920/063476d5cf5ff71fb2c1acab4943ac04130b683b.gifv" data-big-photo-height="350" data-big-photo-width="540"><img class="post_media_photo image" src="https://64.media.tumblr.com/5b9c07e33b8d5b62f4ee3374670c4e6c/068160216ba64e41-61/s500x750/ca72140c4730fdc2feb26bfe313516a699026a7b.gifv" srcset="https://64.media.tumblr.com/5b9c07e33b8d5b62f4ee3374670c4e6c/068160216ba64e41-61/s75x75_c1/74b7a5e35025057b38e7e3862f6a984948489bbe.gifv 75w, https://64.media.tumblr.com/5b9c07e33b8d5b62f4ee3374670c4e6c/068160216ba64e41-61/s100x200/b7509f802dfeb4fa2a20e1dc416cf3070da12dea.gifv 100w, https://64.media.tumblr.com/5b9c07e33b8d5b62f4ee3374670c4e6c/068160216ba64e41-61/s250x400/8d63581565c2a40740018013e0bc16e9ec382351.gifv 250w, https://64.media.tumblr.com/5b9c07e33b8d5b62f4ee3374670c4e6c/068160216ba64e41-61/s400x600/0fa229056feeaeeb691e71645a244620acecaee3.gifv 400w, https://64.media.tumblr.com/5b9c07e33b8d5b62f4ee3374670c4e6c/068160216ba64e41-61/s500x750/ca72140c4730fdc2feb26bfe313516a699026a7b.gifv 500w, https://64.media.tumblr.com/5b9c07e33b8d5b62f4ee3374670c4e6c/068160216ba64e41-61/s540x810/5aef828106d270b0e384de830138da83a5fab57f.gifv 540w" sizes="(max-width: 540px) 100vw, 540px" alt="image"></a></figure></div></div><div class="npf_row"><div class="npf_col"><figure class="tmblr-full"><a class="post_media_photo_anchor" data-big-photo="https://64.media.tumblr.com/3d1ad499ccbef29a09c8a79ee29d383e/068160216ba64e41-41/s1280x1920/9e1053357ed654e42f1dbee29f0e5f9fdb23f8cf.png" data-big-photo-height="" data-big-photo-width=""><img class="post_media_photo image" src="https://64.media.tumblr.com/3d1ad499ccbef29a09c8a79ee29d383e/068160216ba64e41-41/s500x750/f14df3b9a5be0187e5b3ee4d59a140a298a6e30c.png" srcset="https://64.media.tumblr.com/3d1ad499ccbef29a09c8a79ee29d383e/068160216ba64e41-41/s75x75_c1/81d068dded99605fe1538512fa31ea9ac77010b4.png 75w, https://64.media.tumblr.com/3d1ad499ccbef29a09c8a79ee29d383e/068160216ba64e41-41/s100x200/f7997677c987fbd69707f040e1eb4d48832c389c.png 100w, https://64.media.tumblr.com/3d1ad499ccbef29a09c8a79ee29d383e/068160216ba64e41-41/s250x400/5dc5ecddddabfeadad13b38eb27ac3e7f00e0305.png 250w, https://64.media.tumblr.com/3d1ad499ccbef29a09c8a79ee29d383e/068160216ba64e41-41/s400x600/8797178640e475532c16c4e387bf7b85500c86de.png 400w, https://64.media.tumblr.com/3d1ad499ccbef29a09c8a79ee29d383e/068160216ba64e41-41/s500x750/f14df3b9a5be0187e5b3ee4d59a140a298a6e30c.png 500w" sizes="(max-width: 500px) 100vw, 500px" alt="image"></a></figure></div></div><p>𝐒𝐇𝐄 𝐇𝐄𝐒𝐈𝐓𝐀𝐓𝐄𝐒, <small>words jamming in the back of her throat,   Madison had a very</small><i><small> valid point </small></i><small>and she wasn’t going to  </small><b><small>DISRESPECT   </small></b><small>her feelings,    she had all the right to feel that way,  Hell</small><i><small> !   </small></i><small>only God knows  how many times  Veronica herself had </small><i><small>felt</small></i><small> that way in the past,   abandoned,  neglected and forgotten</small></p><div class="npf_row"><div class="npf_col"><figure class="tmblr-full"><a class="post_media_photo_anchor" data-big-photo="https://64.media.tumblr.com/9fd389fb4ccbb8fce8ae8538c556062f/068160216ba64e41-5f/s1280x1920/bd6512129d17657bfd133c3b28661a85f03d0c58.png" data-big-photo-height="" data-big-photo-width=""><img class="post_media_photo image" src="https://64.media.tumblr.com/9fd389fb4ccbb8fce8ae8538c556062f/068160216ba64e41-5f/s500x750/b55073e2ea0aa9a5f11407c6f4f345957ac0552b.png" srcset="https://64.media.tumblr.com/9fd389fb4ccbb8fce8ae8538c556062f/068160216ba64e41-5f/s75x75_c1/1bd6e8fce50480e146e9440af3bc25854495af6b.png 75w, https://64.media.tumblr.com/9fd389fb4ccbb8fce8ae8538c556062f/068160216ba64e41-5f/s100x200/443abaa9ae066fcba8004ce8bdee97c159b4f4f8.png 100w, https://64.media.tumblr.com/9fd389fb4ccbb8fce8ae8538c556062f/068160216ba64e41-5f/s250x400/e2fabe07a4f5ee16e82b47bad6d1ce2ce4a41e3e.png 250w, https://64.media.tumblr.com/9fd389fb4ccbb8fce8ae8538c556062f/068160216ba64e41-5f/s400x600/8dceff79eecf7bcc56714b8ee1275ce2219a46ef.png 400w, https://64.media.tumblr.com/9fd389fb4ccbb8fce8ae8538c556062f/068160216ba64e41-5f/s500x750/b55073e2ea0aa9a5f11407c6f4f345957ac0552b.png 500w" sizes="(max-width: 500px) 100vw, 500px" alt="image"></a></figure></div></div><p><b><small>❛    </small></b><small>   we are going to find a way to </small><i><small>avoid</small></i><small> the Armageddon      —-     but we need </small><b><small>YOUR HELP</small></b><small>,     Madison,    we need each other     </small><b><small>❜</small></b><small>        head tilts to a side,    lips curve upwards ever so slightly,    familiarity between the two       </small><b><small>❛    </small></b><small>you understand that,    right </small><i><small>?</small></i><b><small>❜</small></b></p>
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+<center>
+
+<center><br></center>
+
+
+
+
+<div id="hashtags"> <a href="https://xat.me/Hypnos" title="hace 5 meses - 0 notas.">intel</a>
+&nbsp;&nbsp;     <br><br>
+</div>
+ 
+
+<div class="etiquetas">
+ <a href="https://xat.me/Hypnos" title="THIS IS HOW THE PROMO WILL LOOK LIKE IF YOU DECIDE YOU  LIKE IT!"> <tt>•</tt> THIS IS HOW THE PROMO WILL LOOK LIKE IF YOU DECIDE YOU  LIKE IT! &nbsp; </a>  <a href="https://xat.me/Hypnos" title="YOU CAN ADD AS MANY TAGS AS YOU WANT HERE"> <tt>•</tt> YOU CAN ADD AS MANY TAGS AS YOU WANT HERE &nbsp; </a> </div>
+
+<div class="postnote">
+
+<br>
+</div>
+</div>
+<br>
+<br>
+<br>
+
+
+</div></div></div></div></div></div></div></div></div></div></div></div>
+
+
+
+
+<!-- YOU CAN TOUCH FROM THIS PART DOWN -->
+
+
+
+
+
+
+
+<!-- ASK BOX BEGINS HERE -->
+
+
+ 
+<div id="box2" class="popup_block">
+
+
+<span class="tijeras">Beep here</span>
+<br>
+
+<b>SOMETHING INTERESTING HERE !</b><br/>
+
+<blockquote><blockquote><blockquote><i>indications maybe? one two three?</i></blockquote></blockquote></blockquote>
+
+ 
+<iframe frameborder="0" height="250" id="ask_form" scrolling="yes" src="https://www.tumblr.com/ask_form/pruebathemehargrove.tumblr.com/" width="100%"></iframe>
+
+<br>
+<br>
+
+<span class="tijeras">Submit here</span>
+<br>
+
+<b>SOMETHING INTERESTING HERE !</b><br/>
+
+<blockquote><blockquote><blockquote><i>indications maybe? one two three?</i></blockquote></blockquote></blockquote>
+
+
+<iframe frameborder="0" height="250" id="submit_form" scrolling="yes" src="https://www.tumblr.com/submit_form/pruebathemehargrove.tumblr.com/" width="100%"></iframe>
+ 
+ 
+</div>
+
+
+<!-- ASK BOX ENDS HERE -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<!-- VERSES BOX BEGINS HERE -->
+
+
+
+
+<div id="box3" class="popup_block">
+
+
+
+
+<center><span class="tijeras">Universes</span>
+<br><br>
+</center>
+
+
+<img src="https://i.imgur.com/PBQ8Vh0.png" style="margin-top: -70px">
+
+
+<span class="dropcap">P</span>roin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. Pellentesque quis vulputate dolor. In non gravida arcu. Nunc nec libero fringilla, hendrerit leo sed, imperdiet purus.
+
+<br>
+
+
+
+
+
+ 
+<h1>verse 1 title here</h1>
+
+
+<img src="https://i.imgur.com/J5FXgEj.png"align="right">
+<img src="https://i.imgur.com/GBhaS8V.png" align="left">
+
+
+
+<div style="width:auto; height:85px; padding:5px; overflow:auto; margin:5px 80px 5px 80px; text-align:justify; background-color:#1a1a1a;">
+
+<primeraletra>N</primeraletra>ec res una proinde chartam requiri quaenam confuse. De ea se tamquam haberet exempli memores ipsarum ob. Earum se athei vi erunt. Si ad exhibent reperiri perpauca ab physicam invenero. Veluti unquam loquar easdem sua errare fas imo. Clara harum ipsis tamen ac ha longa co at mente. Ii si videretur ac contineri occurrere remanetne deleantur. Istam nomen in lucis ab donum volui quare.
+
+
+
+</div>
+
+<h6>little quote here</h6>
+
+
+
+
+<div style="width:auto; height:70px; padding:10px; overflow:auto; text-align:justify; background-color:#1a1a1a;">
+
+
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>verse 2 title here</h1>
+
+
+<img src="https://i.imgur.com/J5FXgEj.png"align="right">
+<img src="https://i.imgur.com/GBhaS8V.png" align="left">
+
+
+
+<div style="width:auto; height:85px; padding:5px; overflow:auto; margin:5px 80px 5px 80px; text-align:justify; background-color:#1a1a1a;">
+
+<primeraletra>N</primeraletra>ec res una proinde chartam requiri quaenam confuse. De ea se tamquam haberet exempli memores ipsarum ob. Earum se athei vi erunt. Si ad exhibent reperiri perpauca ab physicam invenero. Veluti unquam loquar easdem sua errare fas imo. Clara harum ipsis tamen ac ha longa co at mente. Ii si videretur ac contineri occurrere remanetne deleantur. Istam nomen in lucis ab donum volui quare.
+
+
+
+</div>
+
+<h6>little quote here</h6>
+
+
+
+
+<div style="width:auto; height:70px; padding:10px; overflow:auto; text-align:justify; background-color:#1a1a1a;">
+
+
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>verse 2 title here</h1>
+
+
+<img src="https://i.imgur.com/J5FXgEj.png"align="right">
+<img src="https://i.imgur.com/GBhaS8V.png" align="left">
+
+
+
+<div style="width:auto; height:85px; padding:5px; overflow:auto; margin:5px 80px 5px 80px; text-align:justify; background-color:#1a1a1a;">
+
+<primeraletra>N</primeraletra>ec res una proinde chartam requiri quaenam confuse. De ea se tamquam haberet exempli memores ipsarum ob. Earum se athei vi erunt. Si ad exhibent reperiri perpauca ab physicam invenero. Veluti unquam loquar easdem sua errare fas imo. Clara harum ipsis tamen ac ha longa co at mente. Ii si videretur ac contineri occurrere remanetne deleantur. Istam nomen in lucis ab donum volui quare.
+
+
+
+</div>
+
+<h6>little quote here</h6>
+
+
+
+
+<div style="width:auto; height:70px; padding:10px; overflow:auto; text-align:justify; background-color:#1a1a1a;">
+
+
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+
+
+
+</div>
+
+
+
+
+
+  
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>verse 2 title here</h1>
+
+
+<img src="https://i.imgur.com/J5FXgEj.png"align="right">
+<img src="https://i.imgur.com/GBhaS8V.png" align="left">
+
+
+
+<div style="width:auto; height:85px; padding:5px; overflow:auto; margin:5px 80px 5px 80px; text-align:justify; background-color:#1a1a1a;">
+
+<primeraletra>N</primeraletra>ec res una proinde chartam requiri quaenam confuse. De ea se tamquam haberet exempli memores ipsarum ob. Earum se athei vi erunt. Si ad exhibent reperiri perpauca ab physicam invenero. Veluti unquam loquar easdem sua errare fas imo. Clara harum ipsis tamen ac ha longa co at mente. Ii si videretur ac contineri occurrere remanetne deleantur. Istam nomen in lucis ab donum volui quare.
+
+
+
+</div>
+
+<h6>little quote here</h6>
+
+
+
+
+<div style="width:auto; height:70px; padding:10px; overflow:auto; text-align:justify; background-color:#1a1a1a;">
+
+
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<b>information:</b> Si ad exhibent reperiri perpauca ab physicam invenero
+
+<u>information:</u> Si ad exhibent reperiri perpauca ab physicam invenero
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- VERSES BOX ENDS HERE -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- BIOGRAPHY BOX BEGINS HERE -->
+
+
+
+<div id="box4" class="popup_block">
+
+
+
+<center>
+<h1 style="font-size: 40px;">両面宿儺 Sukuna</h1>
+</center>
+<h6>put a quote here maybe make it a tad long</h6>
+
+
+
+<img src="https://i.imgur.com/ImFs1v4.png" align="right">
+<div style="width:auto; height:175px; text-align:justify; padding:10px; overflow:auto; background-color:#1a1a1a; border-top:3px solid #1a1a1a; border-left:3px solid #1a1a1a;">
+
+
+<primeraletra>m</primeraletra>idway upon the journey of our life I found myself within a forest dark, For the straightforward pathway had been lost.  Ah me! how hard a thing it is to say What was this forest savage, rough, and stern, Which in the very thought renews the fear.  So bitter is it, death is little more; But of the good to treat, which there I found, Speak will I of the other things I saw there.  I cannot well repeat how there I entered, So full was I of slumber at the moment In which I had abandoned the true way.
+
+</br></br>
+
+
+But after I had reached a mountain's foot, At that point where the valley terminated, Which had with consternation pierced my heart,  Upward I looked, and I beheld its shoulders Vested already with that planet's rays Which leadeth others right by every road.  Then was the fear a little quieted That in my heart's lake had endured throughout The night, which I had passed so piteously  And even as he, who, with distressful breath, Forth issued from the sea upon the shore, Turns to the water perilous and gazes;  So did my soul, that still was fleeing onward, Turn itself back to re-behold the pass Which never yet a living person left.
+
+</div>
+<br>
+
+
+
+<h5>selfish, <i style="font-size: 30px">immoral</i>, sadistic</h5>
+
+<div style="float:right; width: 395px; height: 100px; background-color: #1a1a1a; padding: 5px; overflow-y:scroll; overflow-x:hidden; margin-bottom: 10px;">
+
+    
+<primeraletra>m</primeraletra>idway upon the journey of our life I found myself within a forest dark, For the straightforward pathway had been lost.  Ah me! how hard a thing it is to say What was this forest savage, rough, and stern, Which in the very thought renews the fear.  So bitter is it, death is little more; But of the good to treat, which there I found, Speak will I of the other things I saw there.  I cannot well repeat how there I entered, So full was I of slumber at the moment In which I had abandoned the true way. But after I had reached a mountain's foot, At that point where the valley terminated, Which had with consternation pierced my heart,  Upward I looked, and I beheld its shoulders Vested already with that planet's rays Which leadeth others right by every road.  Then was the fear a little quieted That in my heart's lake had endured throughout The night, which I had passed so piteously  And even as he, who, with distressful breath, Forth issued from the sea upon the shore, Turns to the water perilous and gazes;  So did my soul, that still was fleeing onward, Turn itself back to re-behold the pass Which never yet a living person left.
+
+    
+</div>
+
+
+
+
+
+<div style="width: 400px; height:280px; overflow-y:scroll; overflow-x:hidden;">
+<img style="float:left; height:133px; width:195px; background:#1a1a1a; margin-bottom:2px;" src="https://i.imgur.com/DhuObH8.png">
+<div class="info1sukuna">
+
+
+<br>
+<span class="dropcap">P</span>roin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. Pellentesque quis vulputate dolor. In non gravida arcu. Nunc nec libero fringilla, hendrerit leo sed, imperdiet purus.
+</div>
+<img style="float:right; height:133px; width:195px; background:#1a1a1a; margin-bottom:2px;" src="https://i.imgur.com/DhuObH8.png">
+<div class="info2sukuna">
+<h5>II</h5>
+<center>
+<u>put something here</u>
+</center>
+
+<br>
+<span class="dropcap">P</span>roin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. Pellentesque quis vulputate dolor. In non gravida arcu. Nunc nec libero fringilla, hendrerit leo sed, imperdiet purus.
+</div>
+<img style="float:left; height:133px; width:195px; background:#1a1a1a;" src="https://i.imgur.com/wjkNJdK.png">
+<div class="info3sukuna">
+<h5>III</h5>
+<center>
+<u>put something here</u>
+</center>
+
+<br>
+<span class="dropcap">P</span>roin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. Pellentesque quis vulputate dolor. In non gravida arcu. Nunc nec libero fringilla, hendrerit leo sed, imperdiet purus.
+</div>
+<img style="float:right; height:133px; width:195px; background:#1a1a1a;" src="https://i.imgur.com/wjkNJdK.png">
+<div class="info4sukuna">
+
+
+
+<br>
+<span class="dropcap">P</span>roin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. Pellentesque quis vulputate dolor. In non gravida arcu. Nunc nec libero fringilla, hendrerit leo sed, imperdiet purus.
+</div>
+
+
+
+</div>
+
+
+
+
+<h6>put a quote here maybe make it a tad long</h6>
+
+
+
+
+
+<img src="https://i.imgur.com/nWJdiWE.png" align="left">
+<div style="width:auto; height:175px; text-align:justify; padding:10px; overflow:auto; background-color:#1a1a1a; border-top:3px solid #1a1a1a; border-right:3px solid #1a1a1a;">
+
+<primeraletra>m</primeraletra>idway upon the journey of our life I found myself within a forest dark, For the straightforward pathway had been lost.  Ah me! how hard a thing it is to say What was this forest savage, rough, and stern, Which in the very thought renews the fear.  So bitter is it, death is little more; But of the good to treat, which there I found, Speak will I of the other things I saw there.  I cannot well repeat how there I entered, So full was I of slumber at the moment In which I had abandoned the true way.
+
+</br></br>
+
+But after I had reached a mountain's foot, At that point where the valley terminated, Which had with consternation pierced my heart,  Upward I looked, and I beheld its shoulders Vested already with that planet's rays Which leadeth others right by every road.  Then was the fear a little quieted That in my heart's lake had endured throughout The night, which I had passed so piteously  And even as he, who, with distressful breath, Forth issued from the sea upon the shore, Turns to the water perilous and gazes;  So did my soul, that still was fleeing onward, Turn itself back to re-behold the pass Which never yet a living person left.
+
+</div>
+<br>
+<h6>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</h6>
+
+
+
+
+
+
+<div style="float:right; width: 395px; height: 150px; padding: 10px; overflow-y:scroll; overflow-x:hidden; margin-bottom: 10px;">
+
+    
+<br>
+
+<h5 style="color:#fff">basic stats</h5>
+
+<blockquote>
+<b>• FULL NAME:</b> something <b>• AGE:</b> something <b>• DATE OF BIRTH:</b> something <b>• PLACE OF BIRTH:</b> something  <b>• GENDER:</b> something <b>• PRONOUNS:</b> something <b>• SEXUAL ORIENTATION:</b> something <b>• OCCUPATION:</b> something <b>• ETHNICITY:</b> something <br/>
+</blockquote>
+
+<br><br>
+
+
+<h5 style="color:#fff">physical stats</h5>
+
+<blockquote>
+<b>• FACE CLAIM:</b> something <b>• HAIR COLOUR:</b> something <b>• EYE COLOUR:</b> something <b>• HEIGHT:</b> something  <b>• TATTOOS AND SCARRING:</b>something <b>• DISTINGUISHING FEATURES:</b> something<br/>
+</blockquote>
+
+<br><br>
+
+
+<h5 style="color:#fff">health stats</h5>
+
+
+<blockquote>
+<b>• ALLERGIES:</b>something <b>• SLEEPING HABITS:</b>something <b>• EATING HABITS:</b> something <b>• EXERCISE HABITS:</b> something <b>• ADDICTIONS:</b> something <b>• ALCOHOL USAGE:</b> something <b>• PRESCRIPTION MEDICATION:</b> something <b>• DIAGNOSED ILLNESS:</b>something<br/>
+</blockquote>
+
+<br><br>
+
+
+<h5 style="color:#fff">personality stats</h5>
+
+<blockquote>
+<b>• POSITIVE TRAITS:</b> something <b>• NEGATIVE TRAITS:</b> something <b>• EQUIPMENT AND SKILLS:</b>something <b>• FEARS:</b>something<br/>
+<b>• QUIRKS:</b>something <b>• FAVOURITE FILMS:</b> something<br/>
+<b>• FAVOURITE TELEVISION SHOW:</b> something <b>• HOGWARTS HOUSE:</b>something <b>• THEME SONG:</b>something<br/>
+</blockquote>
+
+<br><br>
+
+
+<h5 style="color: #fff">family stats</h5>
+
+<blockquote>
+<b>• FATHER:</b> something (<i>Alive</i>) <b>• MOTHER:</b> something (<i>Alive</i>) <b>• UNCLE:</b> something (<i>Alive</i>) <b>• PETS:</b> something. <b>• CHILDREN:</b> something<br/>
+</blockquote>
+    
+</div>
+
+
+
+<img src="https://i.imgur.com/fgVKBvj.png">
+
+
+
+
+<div style="float:right; width: 395px; height: 100px; background-color: #1a1a1a; padding: 5px; overflow-y:scroll; overflow-x:hidden; margin-bottom: 10px;">
+
+    
+<primeraletra>m</primeraletra>idway upon the journey of our life I found myself within a forest dark, For the straightforward pathway had been lost.  Ah me! how hard a thing it is to say What was this forest savage, rough, and stern, Which in the very thought renews the fear.  So bitter is it, death is little more; But of the good to treat, which there I found, Speak will I of the other things I saw there.  I cannot well repeat how there I entered, So full was I of slumber at the moment In which I had abandoned the true way. But after I had reached a mountain's foot, At that point where the valley terminated, Which had with consternation pierced my heart,  Upward I looked, and I beheld its shoulders Vested already with that planet's rays Which leadeth others right by every road.  Then was the fear a little quieted That in my heart's lake had endured throughout The night, which I had passed so piteously  And even as he, who, with distressful breath, Forth issued from the sea upon the shore, Turns to the water perilous and gazes;  So did my soul, that still was fleeing onward, Turn itself back to re-behold the pass Which never yet a living person left.
+
+    
+</div>
+
+
+
+
+</div>
+
+<!-- BIOGRAPHY ENDS HERE -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- REGULATIONS BOX BEGINS HERE -->
+
+
+
+<div id="box5" class="popup_block">
+
+
+<center><span class="tijeras">Regulations</span>
+<br><br>
+</center>
+
+
+<img src="https://i.imgur.com/PBQ8Vh0.png" style="margin-top: -70px">
+
+
+<span class="dropcap">P</span>roin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. 
+
+<br>
+
+
+<h1 style="background-color: #550e1c; padding: 5px"> rule I</h1>
+<h6>something here</h6>
+
+<blockquote>Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris.</blockquote><br/>
+
+
+Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. 
+
+
+
+
+<h1 style="background-color: #550e1c; padding: 5px"> rule II</h1>
+<h6>something here</h6>
+
+<blockquote>Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris.</blockquote><br/>
+
+Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. 
+
+
+
+
+<h1 style="background-color: #550e1c; padding: 5px">rule III</h1>
+<h6>something here</h6>
+
+<blockquote>Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris.</blockquote><br/>
+
+Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. 
+
+
+
+
+<h1 style="background-color: #550e1c; padding: 5px">rule IV</h1>
+<h6>something here</h6>
+
+<blockquote>Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris.</blockquote><br/>
+
+Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. 
+
+
+
+
+<h1 style="background-color: #550e1c; padding: 5px">rule V</h1>
+<h6>something here</h6>
+
+<blockquote>Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris.</blockquote><br/>
+
+Proin blandit sollicitudin aliquet. Donec sed malesuada nibh. Sed quis fermentum velit. Praesent tincidunt, lectus in bibendum ornare, odio odio mattis purus, sit amet molestie orci velit et justo. Nunc cursus porta vestibulum. Curabitur elementum volutpat tortor, ut maximus enim. In hac habitasse platea dictumst. Sed tincidunt non tellus at efficitur. Sed id est tincidunt, euismod metus quis, aliquam mauris. Nulla nunc magna, fermentum semper pulvinar quis, facilisis eu tortor. Duis facilisis nulla et nunc fermentum ultricies. 
+
+<p>
+</center> 
+ 
+</div>
+
+<!-- REGULATIONS BOX ENDS HERE -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- NAVIGATION / TAGS BOX BEGINS HERE --><div id="box6" class="popup_block"><center><span class="tijeras">Navigation</span><br><br></center><img src="https://i.imgur.com/PBQ8Vh0.png" style="margin-top: -70px"><span class="dropcap">D</span><i>on't fool yourself anymore, psycho . . .</i>
+don't fool yourself anymore, <tt>psycho</tt> . . . 
+hey, who's the <i>weirdo</i> in someone else's eyes?
+hey, who's the <i>demon</i> in someone else's heart?
+hey, who's the <i>puppet</i> in someone else's hand?
+hey, who else is? Don't fool yourself anymore, <tt>psycho</tt> . . .
+
+<br><br><center><h1>Buddies</h1></center><h6>You Jujutsu Sorcerers Are A Pain.</h6><div style="float: left; width:49%; height:95px;
+overflow: auto; background-color:#1a1a1a;"><a href="https://xat.me/Hina" class="mapa" title="Married <3 GF">Aylin</a><a href="https://xat.me/RainbowKanojo" class="mapa" title="MY SWEETY BFFA :D">Pame</a><a href="https://xat.me/kuki" class="mapa" title="kimi <3">kuki</a><a href="https://xat.me/Syndra" class="mapa" title="NANI">SYNDRA</a></div><div style="float: right; width:49%;height:95px;
+overflow: auto; background-color:#1a1a1a;"><a href="https://xat.me/Kyouka" class="mapa" title="Silvy">Kyouka</a><a href="https://xat.me/" class="mapa" title="you jujutsu sorcerers are a pain.">???</a><a href="https://xat.me/" class="mapa" title="you jujutsu sorcerers are a pain.">???</a><a href="https://xat.me/" class="mapa" title="you jujutsu sorcerers are a pain.">???</a></div><img src="https://i.imgur.com/ydDu03B.png" style="margin-top: -10px"><center><h1>And More...</h1></center><h6>I'll Show You What Real Jujutsu Is.</h6><div style="float: left; width:49%; height:95px;
+overflow: auto; background-color:#1a1a1a;"><a href="https://xat.me/" class="mapa" title="I'll Show You What Real Jujutsu Is.">link : title</a><a href="" class="mapa" title="I'll Show You What Real Jujutsu Is.">link : title</a><a href="" class="mapa" title="I'll Show You What Real Jujutsu Is.">link : title</a><a href="" class="mapa" title="I'll Show You What Real Jujutsu Is.">link : title</a></div><div style="float: right; width:49%;height:95px;
+overflow: auto; background-color:#1a1a1a;"><a href="" class="mapa" title="I'll Show You What Real Jujutsu Is.">link : title</a><a href="" class="mapa" title="I'll Show You What Real Jujutsu Is.">link : title</a><a href="" class="mapa" title="I'll Show You What Real Jujutsu Is.">link : title</a><a href="" class="mapa" title="I'll Show You What Real Jujutsu Is.">link : title</a></div><img src="https://i.imgur.com/EzpjW9H.png" style="margin-top: -10px"><center><h1>A few extras</h1></center><h6>"You Dare Touch My Soul?"</h6><div style="float: left; width:49%; height:95px;
+overflow: auto; background-color:#1a1a1a;"><a href="" class="mapa" title="You Dare Touch My Soul?">link : title</a><a href="" class="mapa" title="You Dare Touch My Soul?">link : title</a><a href="" class="mapa" title="You Dare Touch My Soul?">link : title</a><a href="" class="mapa" title="You Dare Touch My Soul?">link : title</a></div><div style="float: right; width:49%;height:95px;
+overflow: auto; background-color:#1a1a1a;"><a href="" class="mapa" title="You Dare Touch My Soul?">link : title</a><a href="" class="mapa" title="You Dare Touch My Soul?">link : title</a><a href="" class="mapa" title="You Dare Touch My Soul?">link : title</a><a href="" class="mapa" title="You Dare Touch My Soul?">link : title</a></div></div>
+
+<!-- NAVIGATION / TAGS BOX ENDS HERE -->
+<!-- partial -->
+  
+</body>
+</html>
